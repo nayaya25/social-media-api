@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const postController_1 = require("../controllers/postController");
+const postValidator_1 = require("../validators/postValidator");
+const validate_1 = require("../validators/validate");
+const router = (0, express_1.Router)();
+router.post('/create', postValidator_1.createPostValidator, validate_1.validate, postController_1.createPost);
+router.get('/following/:userId', postController_1.getPostsByFollowingUsers);
+router.post('/like', postController_1.likePost);
+router.post('/comment', postController_1.commentOnPost);
+exports.default = router;
