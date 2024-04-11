@@ -30,7 +30,7 @@ export const getPostsByFollowingUsers = async (req: Request, res: Response, next
             .sort({ createdAt: -1 })
             .skip((page - 1) * limit)
             .limit(limit);
-        res.json(posts);
+        res.json({ message: "Posts by following fetched", data: posts});
     } catch (error: any) {
         next(error)
     }
@@ -40,7 +40,7 @@ export const likePost = async (req: Request, res: Response, next: NextFunction) 
     try {
         const { user } = currentUser;
 
-        const { postId } = req.body;
+        const { postId } = req.params;
         const post = await Post.findById(postId);
         if (!post) {
             throw new NotFoundError('Post not found');
@@ -54,6 +54,7 @@ export const likePost = async (req: Request, res: Response, next: NextFunction) 
 
         res.json({ message: 'Post liked successfully' });
     } catch (error: any) {
+        console.log(error)
         next(error)
     }
 };
@@ -63,7 +64,9 @@ export const commentOnPost = async (req: Request, res: Response, next: NextFunct
     const { user } = currentUser;
 
     try {
-        const { postId, text } = req.body;
+        const { postId } = req.params;
+        const { text } = req.body;
+
         const post = await Post.findById(postId);
         if (!post) {
             throw new NotFoundError('Post not found');
@@ -79,3 +82,24 @@ export const commentOnPost = async (req: Request, res: Response, next: NextFunct
         next(error)
     }
 };
+
+export const getLikesCommentsCount = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { postId } = req.params;
+
+        const result = await Post.findById(postId).select('likes comments');
+        if(!result)
+            throw new NotFoundError('Post Not Found')
+
+        res.json({
+            message: 'Counts Fetched',
+            data: {
+                numberOfLikes: result.likes.length,
+                numberOfComments: result.comments.length
+            }
+        });
+    } catch (error: any) {
+        next(error)
+    }
+};
+

@@ -138,3 +138,160 @@ Example:
 >  curl -X POST -H "Content-Type: application/json" --data @post.json http://localhost:3000/api/v1/posts/create
 > ```
 </details>
+
+------------------------------------------------------------------------------------------
+
+#### Like a Post
+
+<details>
+ <summary><code>POST</code> <code><b>/</b></code> <code>(Like a post)</code></summary>
+
+##### Parameters
+
+> | name   | type     | data type     | description    |
+> |--------|----------|---------------|----------------|
+> | postId | required | param(string) | Id of the post |
+
+
+##### Responses
+
+> | http code | content-type | response                                 |
+> |-----------|----|------------------------------------------|
+> | `200`     | `application/json` | `{"message" : "Post liked successfully"}` |
+> | `404`     | `application/json` | `{"message":"Post Not found"}`           |
+> | `400`     | `application/json` | `{"message":"Missing Param: postId"}`    |
+> | `500`     | `application/json` | `{"message": "Internal Server Error" ]`  |
+
+##### Example cURL
+
+> ```javascript
+>  curl -X POST -H "Content-Type: application/json" --data @post.json http://localhost:3000/api/v1/posts/6617c481784018cf3605620a/like
+> ```
+</details>
+
+------------------------------------------------------------------------------------------
+
+#### Comment on a Post
+
+<details>
+ <summary><code>POST</code> <code><b>/</b></code> <code>(Comment on a post)</code></summary>
+
+##### Parameters
+
+> | name   | type     | data type     | description    |
+> |--------|----------|---------------|----------------|
+> | postId | required | param(string) | Id of the post |
+> | text   | required | body(string)  | The comment    |
+
+
+
+##### Responses
+
+> | http code | content-type | response                                |
+> |-----------|----|-----------------------------------------|
+> | `200`     | `application/json` | `{"message" : "Post Commented successfully"}` |
+> | `404`     | `application/json` | `{"message":"Post Not found"}`          |
+> | `400`     | `application/json` | `{"message":"Missing Param: postId"}`   |
+> | `500`     | `application/json` | `{"message": "Internal Server Error" ]` |
+
+##### Example cURL
+
+> ```javascript
+>  curl -X POST -H "Content-Type: application/json" --data @post.json http://localhost:3000/api/v1/posts/6617c481784018cf3605620a/comment
+> ```
+</details>
+
+------------------------------------------------------------------------------------------
+
+#### Get Number of Likes & Comments
+
+<details>
+ <summary><code>GET</code> <code><b>/</b></code> <code>(Number of likes/comments on a post)</code></summary>
+
+##### Parameters
+
+> | name   | type     | data type     | description    |
+> |--------|----------|---------------|----------------|
+> | postId | required | param(string) | Id of the post |
+
+
+
+##### Responses
+
+> | http code | content-type | response                                                                          |
+> |-----------|----|-----------------------------------------------------------------------------------|
+> | `200`     | `application/json` | `{"message": "Counts Fetched","data": {"numberOfLikes": 1,"numberOfComments": 6}}` |
+> | `404`     | `application/json` | `{"message":"Post Not found"}`                                                    |
+> | `400`     | `application/json` | `{"message":"Missing Param: postId"}`                                             |
+> | `500`     | `application/json` | `{"message": "Internal Server Error" ]`                                           |
+
+##### Example cURL
+
+> ```javascript
+>  curl -X GET -H "Content-Type: application/json" --data @post.json http://localhost:3000/api/v1/posts/6617c481784018cf3605620a/likes-comments-count
+> ```
+</details>
+
+
+------------------------------------------------------------------------------------------
+
+#### Follow a User
+
+<details>
+ <summary><code>POST</code> <code><b>/</b></code> <code>(Follow a User)</code></summary>
+
+##### Parameters
+
+> | name   | type     | data type    | description          |
+> |--------|----------|--------------|----------------------|
+> | userId | required | body(string) | Id of user to follow |
+
+
+
+##### Responses
+
+> | http code | content-type | response                                                         |
+> |-----------|----|------------------------------------------------------------------|
+> | `200`     | `application/json` | `{"message": "User Followed Successfully"}`                      |
+> | `404`     | `application/json` | `{"message":"The User You are trying to follow is unavailable"}` |
+> | `400`     | `application/json` | `{"message":"Missing Param: userId"}`                            |
+> | `500`     | `application/json` | `{"message": "Internal Server Error" ]`                          |
+
+##### Example cURL
+
+> ```javascript
+>  curl -X GET -H "Content-Type: application/json" --data userId='ecbdueii3672bdb' http://localhost:3000/api/v1/users/follow
+> ```
+</details>
+
+
+------------------------------------------------------------------------------------------
+
+#### Get Posts by Followed Users
+
+<details>
+ <summary><code>POST</code> <code><b>/</b></code> <code>(GET posts by users followed)</code></summary>
+
+##### Parameters
+
+> | name | type | data type | description |
+> |------|------|-----------|-------------|
+> | None | N/A  | N/A       | N/A         |
+
+
+
+##### Responses
+
+> | http code | content-type | response                                               |
+> |-----------|----|--------------------------------------------------------|
+> | `200`     | `application/json` | `{"message": "Posts by following fetched", data: [{}]` |
+> | `404`     | `application/json` | `{"message":"You are not following any Users"}`        |
+> | `401`     | `application/json` | `{"message":"Mising Token"}`                           |
+> | `500`     | `application/json` | `{"message": "Internal Server Error" ]`                |
+
+##### Example cURL
+
+> ```javascript
+>  curl -X GET -H "Content-Type: application/json" http://localhost:3000/api/v1/posts/following
+> ```
+</details>
