@@ -53,6 +53,12 @@ Example:
 <details>
  <summary><code>POST</code> <code><b>/</b></code> <code>(Create a user)</code></summary>
 
+
+##### Pre-Condtion
+<summary>
+ None
+</summary>
+
 ##### Parameters
 
 > | name     |  type     | data type | description                                                           |
@@ -84,6 +90,12 @@ Example:
 <details>
  <summary><code>POST</code> <code><b>/</b></code> <code>(Login a user)</code></summary>
 
+
+##### Pre-Condtion
+<summary>
+ None
+</summary>
+
 ##### Parameters
 
 > | name     |  type     | data type | description                                                           |
@@ -113,6 +125,12 @@ Example:
 
 <details>
  <summary><code>POST</code> <code><b>/</b></code> <code>(Create a post)</code></summary>
+
+
+##### Pre-Condtion
+<summary>
+ Authorization header set with (Bearer TOKEN)
+</summary>
 
 ##### Parameters
 
@@ -146,6 +164,11 @@ Example:
 <details>
  <summary><code>POST</code> <code><b>/</b></code> <code>(Like a post)</code></summary>
 
+##### Pre-Condtion
+<summary>
+ Authorization header set with (Bearer TOKEN)
+</summary>
+
 ##### Parameters
 
 > | name   | type     | data type     | description    |
@@ -175,6 +198,12 @@ Example:
 
 <details>
  <summary><code>POST</code> <code><b>/</b></code> <code>(Comment on a post)</code></summary>
+
+
+##### Pre-Condtion
+<summary>
+ Authorization header set with (Bearer TOKEN)
+</summary>
 
 ##### Parameters
 
@@ -208,6 +237,12 @@ Example:
 <details>
  <summary><code>GET</code> <code><b>/</b></code> <code>(Number of likes/comments on a post)</code></summary>
 
+##### Pre-Condtion
+<summary>
+ Authorization header set with (Bearer TOKEN)
+</summary>
+
+
 ##### Parameters
 
 > | name   | type     | data type     | description    |
@@ -240,6 +275,12 @@ Example:
 <details>
  <summary><code>POST</code> <code><b>/</b></code> <code>(Follow a User)</code></summary>
 
+
+##### Pre-Condtion
+<summary>
+ Authorization header set with (Bearer TOKEN)
+</summary>
+
 ##### Parameters
 
 > | name   | type     | data type    | description          |
@@ -271,6 +312,12 @@ Example:
 
 <details>
  <summary><code>POST</code> <code><b>/</b></code> <code>(GET posts by users followed)</code></summary>
+
+
+##### Pre-Condtion
+<summary>
+ Authorization header set with (Bearer TOKEN)
+</summary>
 
 ##### Parameters
 
